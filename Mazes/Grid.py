@@ -19,7 +19,7 @@ class Grid(object):
                 arr.append(x)
         return arr
 
-    def ConfigureCells(self):
+    def depricate_ConfigureCells(self):
         """ fix this to use EachCell method... easier than this """
         for row in self.rowCount:
             for col in self.columnCount:
@@ -27,6 +27,17 @@ class Grid(object):
                 self.grid[row][col].east = self.grid[row][col + 1]
                 self.grid[row][col].south = self.grid[row + 1][col]
                 self.grid[row][col].west = self.grid[row][col - 1]
+
+        def ConfigureCells(self):
+            cells = EachCell()
+            for cell in cells:
+                row = cell.row
+                col = cell.column
+
+                cell.north = self.grid[row - 1][col]
+                cell.east = self.grid[row][col + 1]
+                cell.south = self.grid[row + 1][col]
+                cell.west = self.grid[row][col - 1]
 
     def GetCell(self, row, column):
         if 0 < row < self.rowCount - 1:

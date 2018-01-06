@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BinaryTree.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Cell.py">
       <SubType>Code</SubType>
     </Compile>
