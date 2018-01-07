@@ -3,4 +3,6 @@ from BinaryTree import BinaryTree
 
 grid = Grid(4,4)
 bt = BinaryTree()
-bt.On
+bt.On(grid)
+
+print(grid)

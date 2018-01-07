@@ -4,8 +4,8 @@ import random
 class BinaryTree(object):
     """description of class"""
 
-    def On(grid):
-        cells = grid.EachCell
+    def On(self, grid):
+        cells = grid.EachCell()
         for cell in cells:
             neighbours = []
             if cell.north is not None:
@@ -14,15 +14,10 @@ class BinaryTree(object):
             if cell.east is not None:
                 neighbours.append(cell.east)
 
-                neighbour = random.sample(neighbours,1)
-
-                # this below may not be needed
-                #index = randint(0, neighbours.count)
-                #neighbour = neighbours[index]
-
-                if neighbour is not None:
-                    cell.link(neighbour)
-
-
+            # check the list is populated otherwise random.choice throws index error
+            if neighbours:
+                # random.choice returns one object from the list whereas random.sample returns a list
+                neighbour = random.choice(neighbours)
+                cell.link(neighbour)
 
 

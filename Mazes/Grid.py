@@ -9,39 +9,79 @@ class Grid(object):
         self.rowCount = rows
         self.columnCount = columns
         self.grid = self.PrepareGrid()
+        self.ConfigureCells()
+
+    def __str__(self):
+        output = "+" + "---+" * self.columnCount + "\n"
+
+        er = self.EachRow()
+        for row in er:
+            top = "|"
+            bottom = "+"
+
+            for cell in row:
+                if cell is None:
+                    cell = Cell(-1,-1)
+
+                body = "   "
+                eastBoundary = " " if cell.IsLinked(cell.east) else "|"
+
+                top += body + eastBoundary
+
+                southBoundary = "   " if cell.IsLinked(cell.south) else "..."
+                corner = "+"
+                bottom += southBoundary + corner
+
+            output += top + "\n"
+            output += bottom + "\n"
+
+        return output
+
+
 
     def PrepareGrid(self):
         arr=[]
         for i in range(0,self.rowCount):
             x=[]
             for j in range(0,self.columnCount):
+
                 x.append(Cell(i,j))
-                arr.append(x)
+            
+            arr.append(x)
         return arr
 
-    def depricate_ConfigureCells(self):
-        """ fix this to use EachCell method... easier than this """
-        for row in self.rowCount:
-            for col in self.columnCount:
-                self.grid[row][col].north = self.grid[row - 1][col]
-                self.grid[row][col].east = self.grid[row][col + 1]
-                self.grid[row][col].south = self.grid[row + 1][col]
-                self.grid[row][col].west = self.grid[row][col - 1]
+    def ConfigureCells(self):
+        cells = self.EachCell()
+        for cell in cells:
+            row = cell.row
+            col = cell.column
 
-        def ConfigureCells(self):
-            cells = EachCell()
-            for cell in cells:
-                row = cell.row
-                col = cell.column
+            rowMinusOne = row -1
+            colMinusOne = col - 1
 
-                cell.north = self.grid[row - 1][col]
-                cell.east = self.grid[row][col + 1]
-                cell.south = self.grid[row + 1][col]
-                cell.west = self.grid[row][col - 1]
+            rowPlusOne = row + 1
+            colPlusOne = col + 1
+
+            if rowMinusOne >= 0:
+                cellNorth = self.grid[row-1][col]
+                cell.north = cellNorth
+            
+            if colPlusOne < self.columnCount:
+                cellEast = self.grid[row][col + 1]
+                cell.east = cellEast
+
+            if rowPlusOne < self.rowCount:
+                cellSouth = self.grid[row + 1][col]
+                cell.south = cellSouth
+
+            if colMinusOne >= 0:
+                cellWest = self.grid[row][col - 1]
+                cell.west = cellWest                   
+            
 
     def GetCell(self, row, column):
-        if 0 < row < self.rowCount - 1:
-            if 0 < column < self.columnCount - 1:
+        if 0 <= row < self.rowCount - 1:
+            if 0 <= column < self.columnCount - 1:
                 return self.grid[row][column]
 
         return None
@@ -61,7 +101,8 @@ class Grid(object):
 
     def EachCell(self):
         for row in self.grid:
-            for cell in self.grid[row]:
+            for cell in row:
                 if cell is not None:
                     yield cell
+
 

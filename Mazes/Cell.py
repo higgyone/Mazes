@@ -4,8 +4,8 @@ class Cell(object):
 
     def __init__(self, row, column):
         """Initialiser"""
-        self.rowCount = row
-        self.columCount = column
+        self.row = row
+        self.column = column
         self.neighbours = []
 
         self.north = None
@@ -16,7 +16,9 @@ class Cell(object):
         self.links = {}
 
     def link(self, cell, bidi=True):
-        self.links[cell] = True
+
+        self.links.update({cell: True})
+
         if bidi:
             cell.link(self, False)
 
