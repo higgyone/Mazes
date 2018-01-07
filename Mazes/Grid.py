@@ -1,6 +1,8 @@
 from random import randint
 from Cell import Cell
 
+from PIL import Image, ImageDraw
+
 
 class Grid(object):
     """description of class"""
@@ -37,6 +39,30 @@ class Grid(object):
 
         return output
 
+    def ToPng(self, cellSize = 25):
+        imgWidth = cellSize * self.columnCount
+        imgHeight = cellSize * self.rowCount
+
+        img = Image.new('1',(imgWidth + 1,imgHeight + 1),0)
+        draw = ImageDraw.Draw(img)
+
+        cells = self.EachCell()
+        for cell in cells:
+            x1 = cell.column * cellSize
+            y1 = cell.row * cellSize
+            x2 = (cell.column + 1) * cellSize
+            y2 = (cell.row + 1) * cellSize
+
+            if cell.north is None:
+                draw.line((x1,y1,x2,y1), fill = 128)
+            if cell.west is None:
+                draw.line((x1,y1,x1,y2), fill = 128)
+            if not cell.IsLinked(cell.east):
+                draw.line((x2,y1,x2,y2), fill = 128)
+            if not cell.IsLinked(cell.south):
+                draw.line((x1,y2,x2,y2), fill = 128)
+
+        img.show()
 
 
     def PrepareGrid(self):
