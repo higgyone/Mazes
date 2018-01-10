@@ -3,12 +3,14 @@ from BinaryTree import BinaryTree
 from Sidewinder import Sidewinder
 
 grid = Grid(10,10)
-bt = BinaryTree()
+#bt = BinaryTree()
 #bt.On(grid)
+
+#print(grid)
 
 sw = Sidewinder()
 sw.On(grid)
 
-#print(grid)
+##print(grid)
 
 grid.ToPng()

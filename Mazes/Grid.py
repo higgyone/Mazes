@@ -25,7 +25,8 @@ class Grid(object):
                 if cell is None:
                     cell = Cell(-1,-1)
 
-                body = "   "
+                contentOfCell = self.ContentsOf(cell)
+                body = " " + contentOfCell + " "
                 eastBoundary = " " if cell.IsLinked(cell.east) else "|"
 
                 top += body + eastBoundary
@@ -39,7 +40,7 @@ class Grid(object):
 
         return output
 
-    def ToPng(self, cellSize = 50):
+    def ToPng(self, cellSize = 50, lineWidth = 5):
         imgWidth = cellSize * self.columnCount
         imgHeight = cellSize * self.rowCount
 
@@ -54,13 +55,13 @@ class Grid(object):
             y2 = (cell.row + 1) * cellSize
 
             if cell.north is None:
-                draw.line((x1,y1,x2,y1), fill = 128, width = 2)
+                draw.line((x1,y1,x2,y1), fill = 128, width = lineWidth)
             if cell.west is None:
-                draw.line((x1,y1,x1,y2), fill = 128, width = 2)
+                draw.line((x1,y1,x1,y2), fill = 128, width = lineWidth)
             if not cell.IsLinked(cell.east):
-                draw.line((x2,y1,x2,y2), fill = 128, width = 2)
+                draw.line((x2,y1,x2,y2), fill = 128, width = lineWidth)
             if not cell.IsLinked(cell.south):
-                draw.line((x1,y2,x2,y2), fill = 128, width = 2)
+                draw.line((x1,y2,x2,y2), fill = 128, width = lineWidth)
 
         img.show()
 
@@ -131,4 +132,5 @@ class Grid(object):
                 if cell is not None:
                     yield cell
 
-
+    def ContentsOf(self, cell):
+        return " "
