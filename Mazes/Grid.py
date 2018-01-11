@@ -107,8 +107,8 @@ class Grid(object):
             
 
     def GetCell(self, row, column):
-        if 0 <= row < self.rowCount - 1:
-            if 0 <= column < self.columnCount - 1:
+        if 0 <= row < self.rowCount:
+            if 0 <= column < self.columnCount:
                 return self.grid[row][column]
 
         return None

@@ -5,6 +5,8 @@ class Sidewinder(object):
     """description of class"""
 
     def On(self, grid):   
+        """ Runs the sidewinder algorithm to create a grid and return it"""
+
         er = grid.EachRow()
         for row in er:
             run = []
@@ -20,7 +22,6 @@ class Sidewinder(object):
                 nanb = not atNorthernBoundary
 
                 shouldCloseOut = atEasternBoundary or (nanb and htb)
-                #shouldCloseOut = atEasternBoundary or ((not atNorthernBoundary) and (randint(0,1) == 0))
 
                 if shouldCloseOut:
                     member = random.choice(run)

@@ -11,6 +11,7 @@ class DistanceGrid(Grid):
 
 
     def ContentsOf(self, cell):
+        """Returns tesxt distance in base 36 of distance from cell to root"""
         if self.distances and cell in self.distances:
             dist = self.distances[cell]
             num = np.base_repr(dist, 36)

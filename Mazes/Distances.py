@@ -21,3 +21,21 @@ class Distances(object):
         """Returns a list of the cells present"""
         return self.cells.keys
 
+    def PathTo(self, goal):
+        """Figures out the path to goal from the original starting cell"""
+        current = goal
+
+        breadcrumbs = Distances(self.root)
+        
+        breadcrumbs.cells[current] = self.cells[current]
+
+        while current != self.root:
+            for neighbour in current.links:
+                if self.cells[neighbour] < self.cells[current]:
+                    breadcrumbs.cells[neighbour] = self.cells[neighbour]
+                    current = neighbour
+                    break
+
+        return breadcrumbs
+
+

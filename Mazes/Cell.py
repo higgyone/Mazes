@@ -66,12 +66,11 @@ class Cell(object):
                         continue
                     
                     distances.cells[linked] = distances.cells[cell] + 1
-                    #distances.SetCellDistance(linked, distances.GetCellDistance(cell) + 1)
                     newFrontier.append(linked)
 
             frontier = newFrontier
 
-        return distances.cells
+        return distances
 
     
 
