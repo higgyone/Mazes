@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1a34e753-ee90-415d-8d75-31b5c63d4c75</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Dijkstra.py</StartupFile>
+    <StartupFile>LongestPath.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -37,6 +37,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Grid.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LongestPath.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mazes.py" />

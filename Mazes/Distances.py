@@ -38,4 +38,16 @@ class Distances(object):
 
         return breadcrumbs
 
+    def Max(self):
+        """Get the furthest cell and its distance from the root cell"""
+        maxDistance = 0
+        maxCell = self.root
+
+        for cell, distance in self.cells.items():
+            if distance > maxDistance:
+                maxCell = cell
+                maxDistance = distance
+
+        return maxCell, maxDistance
+
 
