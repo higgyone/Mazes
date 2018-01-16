@@ -14,6 +14,7 @@ class Grid(object):
         self.ConfigureCells()
 
     def __str__(self):
+        """Return the to string of the grid for console output"""
         output = "+" + "---+" * self.columnCount + "\n"
 
         er = self.EachRow()
@@ -41,10 +42,11 @@ class Grid(object):
         return output
 
     def ToPng(self, cellSize = 50, lineWidth = 5):
+        """Create a .png of the grid"""
         imgWidth = cellSize * self.columnCount
         imgHeight = cellSize * self.rowCount
 
-        img = Image.new('1',(imgWidth + 1,imgHeight + 1),0)
+        img = Image.new('RGB',(imgWidth + 1,imgHeight + 1),0)
         draw = ImageDraw.Draw(img)
 
         cells = self.EachCell()
@@ -55,18 +57,19 @@ class Grid(object):
             y2 = (cell.row + 1) * cellSize
 
             if cell.north is None:
-                draw.line((x1,y1,x2,y1), fill = 128, width = lineWidth)
+                draw.line((x1,y1,x2,y1), fill = 'white', width = lineWidth)
             if cell.west is None:
-                draw.line((x1,y1,x1,y2), fill = 128, width = lineWidth)
+                draw.line((x1,y1,x1,y2), fill = 'white', width = lineWidth)
             if not cell.IsLinked(cell.east):
-                draw.line((x2,y1,x2,y2), fill = 128, width = lineWidth)
+                draw.line((x2,y1,x2,y2), fill = 'white', width = lineWidth)
             if not cell.IsLinked(cell.south):
-                draw.line((x1,y2,x2,y2), fill = 128, width = lineWidth)
+                draw.line((x1,y2,x2,y2), fill = 'white', width = lineWidth)
 
         img.show()
 
 
     def PrepareGrid(self):
+        """Setup the initial grid that the maze is made from """
         arr=[]
         for i in range(0,self.rowCount):
             x=[]
@@ -78,6 +81,8 @@ class Grid(object):
         return arr
 
     def ConfigureCells(self):
+        """configure the cells to know what cells are linked to which cell 
+        North, South, East and West"""
         cells = self.EachCell()
         for cell in cells:
             row = cell.row
@@ -107,6 +112,7 @@ class Grid(object):
             
 
     def GetCell(self, row, column):
+        """Get a set cell in the grid. Retuns none if not in the grid"""
         if 0 <= row < self.rowCount:
             if 0 <= column < self.columnCount:
                 return self.grid[row][column]
@@ -114,23 +120,32 @@ class Grid(object):
         return None
 
     def GetRandomCell(self):
+        """Get a random cell from the grid"""
         row = randint(0,self.rowCount)
         col = randint(self.grid[row].count)
 
         return self.grid[row][col]
 
     def GetGridSize(self):
+        """Get the grid area"""
         return self.rowCount * self.columnCount
 
     def EachRow(self):
+        """iterator for getting each row in the grid"""
         for row in self.grid:
             yield row
 
     def EachCell(self):
+        """Iterator to iterate through each cell in the grid"""
         for row in self.grid:
             for cell in row:
                 if cell is not None:
                     yield cell
 
     def ContentsOf(self, cell):
+        """Overridable to return the contents of the cell. Returns None unless overridden"""
         return " "
+
+    def BackgroundColourFor(self):
+        """Overridable to return cell background colour. Returns None unless overriden"""
+        return None

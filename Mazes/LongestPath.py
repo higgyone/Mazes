@@ -1,9 +1,13 @@
 from DistanceGrid import DistanceGrid
 from BinaryTree import BinaryTree
+from Sidewinder import Sidewinder
 
 grid = DistanceGrid(10,10)
-bt = BinaryTree()
-bt.On(grid)
+#bt = BinaryTree()
+#bt.On(grid)
+
+sw = Sidewinder()
+sw.On(grid)
 
 start = grid.GetCell(0,0)
 
