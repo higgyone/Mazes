@@ -1,6 +1,5 @@
 from random import randint
 from Cell import Cell
-
 from PIL import Image, ImageDraw
 
 
@@ -46,24 +45,36 @@ class Grid(object):
         imgWidth = cellSize * self.columnCount
         imgHeight = cellSize * self.rowCount
 
-        img = Image.new('RGB',(imgWidth + 1,imgHeight + 1),0)
+        background = 'black'
+        wall = 'white'
+
+        img = Image.new('RGB',(imgWidth + 1,imgHeight + 1),background)
         draw = ImageDraw.Draw(img)
 
-        cells = self.EachCell()
-        for cell in cells:
-            x1 = cell.column * cellSize
-            y1 = cell.row * cellSize
-            x2 = (cell.column + 1) * cellSize
-            y2 = (cell.row + 1) * cellSize
+        modes = ['background', 'walls']
 
-            if cell.north is None:
-                draw.line((x1,y1,x2,y1), fill = 'white', width = lineWidth)
-            if cell.west is None:
-                draw.line((x1,y1,x1,y2), fill = 'white', width = lineWidth)
-            if not cell.IsLinked(cell.east):
-                draw.line((x2,y1,x2,y2), fill = 'white', width = lineWidth)
-            if not cell.IsLinked(cell.south):
-                draw.line((x1,y2,x2,y2), fill = 'white', width = lineWidth)
+        for mode in modes:
+            # need to reset cells for each mode otherwise will not work on second mode pass
+            cells = self.EachCell()
+            for cell in cells:
+                x1 = cell.column * cellSize
+                y1 = cell.row * cellSize
+                x2 = (cell.column + 1) * cellSize
+                y2 = (cell.row + 1) * cellSize
+
+                if mode == 'background':
+                    colour = self.BackgroundColourFor(cell)
+                    if colour is not None:
+                        draw.rectangle((x1, y1, x2, y2), (colour), (colour))
+                else:
+                    if cell.north is None:
+                        draw.line((x1, y1, x2, y1), fill = wall, width = lineWidth)
+                    if cell.west is None:
+                        draw.line((x1, y1, x1, y2), fill = wall, width = lineWidth)
+                    if not cell.IsLinked(cell.east):
+                        draw.line((x2, y1, x2, y2), fill = wall, width = lineWidth)
+                    if not cell.IsLinked(cell.south):
+                        draw.line((x1, y2, x2, y2), fill = wall, width = lineWidth)
 
         img.show()
 
@@ -146,6 +157,6 @@ class Grid(object):
         """Overridable to return the contents of the cell. Returns None unless overridden"""
         return " "
 
-    def BackgroundColourFor(self):
+    def BackgroundColourFor(self, cell):
         """Overridable to return cell background colour. Returns None unless overriden"""
         return None

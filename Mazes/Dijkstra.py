@@ -1,6 +1,8 @@
 from DistanceGrid import DistanceGrid
 from BinaryTree import BinaryTree
 
+"""Python file to run Dijkstra and get distances from start cell to selected cell"""
+
 grid = DistanceGrid(10,10)
 bt = BinaryTree()
 bt.On(grid)

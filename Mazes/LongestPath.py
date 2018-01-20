@@ -2,6 +2,8 @@ from DistanceGrid import DistanceGrid
 from BinaryTree import BinaryTree
 from Sidewinder import Sidewinder
 
+"""Python file to get longest path from selected cell"""
+
 grid = DistanceGrid(10,10)
 #bt = BinaryTree()
 #bt.On(grid)
