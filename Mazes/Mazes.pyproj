@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1a34e753-ee90-415d-8d75-31b5c63d4c75</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Colouring.py</StartupFile>
+    <StartupFile>Dijkstra.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BinaryTree.py">
+    <Compile Include="Algorithms\__init___.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Algorithms\BinaryTree.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Cell.py">
@@ -49,9 +52,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mazes.py" />
-    <Compile Include="Sidewinder.py">
+    <Compile Include="Algorithms\Sidewinder.py">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Algorithms\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

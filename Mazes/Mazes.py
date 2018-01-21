@@ -1,6 +1,6 @@
 from Grid import Grid
-from BinaryTree import BinaryTree
-from Sidewinder import Sidewinder
+from Algorithms.BinaryTree import BinaryTree
+from Algorithms.Sidewinder import Sidewinder
 
 """Python file to basic grid algorithms"""
 

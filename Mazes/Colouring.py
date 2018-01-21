@@ -1,6 +1,6 @@
 from ColouredGrid import ColouredGrid
-from BinaryTree import BinaryTree
-from Sidewinder import Sidewinder
+from Algorithms.BinaryTree import BinaryTree
+from Algorithms.Sidewinder import Sidewinder
 
 """Python file to run coloured grids"""
 

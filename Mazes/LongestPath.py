@@ -1,6 +1,6 @@
 from DistanceGrid import DistanceGrid
-from BinaryTree import BinaryTree
-from Sidewinder import Sidewinder
+from Algorithms.BinaryTree import BinaryTree
+from Algorithms.Sidewinder import Sidewinder
 
 """Python file to get longest path from selected cell"""
 

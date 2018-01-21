@@ -45,8 +45,8 @@ class Grid(object):
         imgWidth = cellSize * self.columnCount
         imgHeight = cellSize * self.rowCount
 
-        background = 'black'
-        wall = 'white'
+        background = 'white'
+        wall = 'black'
 
         img = Image.new('RGB',(imgWidth + 1,imgHeight + 1),background)
         draw = ImageDraw.Draw(img)
@@ -65,7 +65,7 @@ class Grid(object):
                 if mode == 'background':
                     colour = self.BackgroundColourFor(cell)
                     if colour is not None:
-                        draw.rectangle((x1, y1, x2, y2), (colour), (colour))
+                        draw.rectangle((x1, y1, x2, y2), colour, colour)
                 else:
                     if cell.north is None:
                         draw.line((x1, y1, x2, y1), fill = wall, width = lineWidth)
