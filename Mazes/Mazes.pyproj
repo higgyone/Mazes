@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1a34e753-ee90-415d-8d75-31b5c63d4c75</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>AldousBroderDemo.py</StartupFile>
+    <StartupFile>AldousBroderColourDemo.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AldousBroderColourDemo.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="AldousBroderDemo.py">
       <SubType>Code</SubType>
     </Compile>

@@ -132,8 +132,8 @@ class Grid(object):
 
     def GetRandomCell(self):
         """Get a random cell from the grid"""
-        row = randint(0,self.rowCount)
-        col = randint(0, self.columnCount)
+        row = randint(0,self.rowCount -1)
+        col = randint(0, self.columnCount -1)
 
         return self.grid[row][col]
 
