@@ -1,7 +1,11 @@
 from ColouredGrid import ColouredGrid
 from Algorithms.AldousBroder import AldousBroder
 
-for i in range(0,6):
+"""
+Run the Aldous Broder colour demo 5 times
+"""
+
+for i in range(0,5):
     grid = ColouredGrid(25, 25)
     ab = AldousBroder()
     ab.On(grid)
